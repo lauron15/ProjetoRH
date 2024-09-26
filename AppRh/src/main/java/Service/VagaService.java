@@ -12,39 +12,35 @@ public class VagaService {
 
     private final IVaga repository;
 
-    public VagaService(IVaga repository){
+    public VagaService(IVaga repository) {
         this.repository = repository;
     }
 
-    public List<Vaga>listarVagas(){
+    public List<Vaga> listarVagas() {
         return repository.findAll();
     }
 
-    public Optional<Vaga> buscarVagaPorid(Integer id){
-        return repository.findById(id);
+    public Vaga buscarVagaPorId(Integer id) {
+        return repository.findById(id).orElseThrow(() ->
+                new RuntimeException("Vaga com ID " + id + " não encontrada."));
     }
- public Vaga cadastrarVaga(Vaga vaga){
+
+    public Vaga cadastrarVaga(Vaga vaga) {
         return repository.save(vaga);
- }
+    }
 
- public Vaga editarVaga(Vaga vaga, Integer id) {
-     Optional<Vaga> vagaExistente = repository.findById(id);
-     if (vagaExistente.isPresent()) {
-         vaga.setVagaId(id);
-         return repository.save(vaga);
-     } else {
-         throw new RuntimeException("A vaga com o ID" + id + "não foi encontrada.");
+    public Vaga editarVaga(Vaga vaga, Integer id) {
+        vaga.setVagaId(id);
+        return repository.findById(id).map(existingVaga -> repository.save(vaga))
+                .orElseThrow(() -> new RuntimeException("A vaga com ID " + id + " não foi encontrada."));
+    }
 
-     }
- }
-
- public Boolean excluirVaga(Integer id){
+    public Boolean excluirVaga(Integer id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
         } else {
-            throw new RuntimeException("Vaga com a ID" + id + "não encontrada.");
+            throw new RuntimeException("Vaga com ID " + id + " não encontrada.");
         }
- }
-
+    }
 }

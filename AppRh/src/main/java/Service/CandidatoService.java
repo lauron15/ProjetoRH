@@ -13,24 +13,25 @@ public class CandidatoService {
 
     private final ICandidato repository;
 
-    public CandidatoService(ICandidato repository){
-        this.repository= repository;
+    public CandidatoService(ICandidato repository) {
+        this.repository = repository;
     }
 
-    public List<Candidato>listarCandidatos(){
+    public List<Candidato> listarCandidatos() {
         return repository.findAll();
     }
-    public Optional<Candidato>listarCandidatosPorId(Integer id){
+
+    public Optional<Candidato> listarCandidatosPorId(Integer id) {
         return repository.findById(id);
     }
 
-    public Candidato criarCandidato(Candidato candidato){
+    public Candidato criarCandidato(Candidato candidato) {
         return repository.save(candidato);
     }
 
-    public Candidato editarCandidato(Candidato candidato, Integer id){
+    public Candidato editarCandidato(Candidato candidato, Integer id) {
         Optional<Candidato> candidatoExistente = repository.findById(id);
-        if (candidatoExistente.isPresent()){
+        if (candidatoExistente.isPresent()) {
             candidato.setId(id);
             return repository.save(candidato);
         } else {
