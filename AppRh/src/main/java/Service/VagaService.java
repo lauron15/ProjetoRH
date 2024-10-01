@@ -5,7 +5,7 @@ import Repository.IVaga;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class VagaService {
@@ -16,7 +16,7 @@ public class VagaService {
         this.repository = repository;
     }
 
-    public List<Vaga> listarVagas() {
+    public List<Vaga> listarVaga() {
         return repository.findAll();
     }
 

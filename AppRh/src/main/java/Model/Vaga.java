@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "Vagas")
+@Table(name = "vaga")
 public class Vaga {
 
     @Id
@@ -33,7 +33,7 @@ public class Vaga {
     @NotEmpty
     private LocalDateTime data;
 
-    @OneToMany(mappedBy = "Vagas", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "Vaga", cascade = CascadeType.REMOVE)
     private List<Candidato> candidatos;
 
 }
