@@ -1,6 +1,6 @@
-package Repository;
+package com.AppRh.AppRh.Repository;
 
-import Model.Candidato;
+import com.AppRh.AppRh.Model.Candidato;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

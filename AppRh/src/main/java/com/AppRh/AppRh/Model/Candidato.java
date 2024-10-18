@@ -1,9 +1,7 @@
-package Model;
-
+package com.AppRh.AppRh.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -12,20 +10,19 @@ import lombok.Data;
 public class Candidato {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
     @NotBlank(message = "O RG é obrigatório")
-    @Column(name = "RG", unique = true)
-    private String Rg;
+    @Column(name = "rg", unique = true)
+    private String rg;
 
     @NotBlank(message = "O nome é obrigatório")
-    @Column(name = "nomeCandidato")
-    @NotEmpty
+    @Column(name = "nomecandidato")
     private String nomeCandidato;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "vagaid")
     private Vaga vaga;
-
 }

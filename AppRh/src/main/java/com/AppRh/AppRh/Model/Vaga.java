@@ -1,11 +1,9 @@
-package Model;
+package com.AppRh.AppRh.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,26 +12,19 @@ import java.util.List;
 public class Vaga {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "vagaid")
     private int vagaId;
 
     @NotBlank
     @Column(name = "nome")
-    @NotEmpty
     private String nome;
 
     @NotBlank
     @Column(name = "descricao")
-    @NotEmpty
     private String descricao;
 
-    @NotBlank
-    @Column(name = "data")
-    @NotEmpty
-    private LocalDateTime data;
-
-    @OneToMany(mappedBy = "Vaga", cascade = CascadeType.REMOVE)
+    // Mapeamento corrigido para "vaga"
+    @OneToMany(mappedBy = "vaga", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Candidato> candidatos;
-
 }

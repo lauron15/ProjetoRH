@@ -1,10 +1,11 @@
-package Service;
+package com.AppRh.AppRh.Service;
 
-import Model.Vaga;
-import Repository.IVaga;
+import com.AppRh.AppRh.Model.Vaga;
+import com.AppRh.AppRh.Repository.IVaga;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -20,9 +21,8 @@ public class VagaService {
         return repository.findAll();
     }
 
-    public Vaga buscarVagaPorId(Integer id) {
-        return repository.findById(id).orElseThrow(() ->
-                new RuntimeException("Vaga com ID " + id + " não encontrada."));
+    public Optional<Vaga> buscarVagaPorId(Integer id) {
+        return repository.findById(id);
     }
 
     public Vaga cadastrarVaga(Vaga vaga) {

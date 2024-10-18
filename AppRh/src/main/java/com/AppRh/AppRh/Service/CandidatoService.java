@@ -1,7 +1,7 @@
-package Service;
+package com.AppRh.AppRh.Service;
 
-import Model.Candidato;
-import Repository.ICandidato;
+import com.AppRh.AppRh.Model.Candidato;
+import com.AppRh.AppRh.Repository.ICandidato;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +36,15 @@ public class CandidatoService {
             return repository.save(candidato);
         } else {
             throw new RuntimeException("Candidato com o ID" + id + "não encontrado");
+        }
+    }
+
+    public Boolean excluirCandidato(Integer id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        } else {
+            throw new RuntimeException("Candidato com ID " + id + " não encontrado.");
         }
     }
 
