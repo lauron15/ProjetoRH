@@ -1,5 +1,6 @@
 package com.AppRh.AppRh.Service;
 
+import com.AppRh.AppRh.Model.Candidato;
 import com.AppRh.AppRh.Model.Vaga;
 import com.AppRh.AppRh.Repository.IVaga;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,13 @@ public class VagaService {
     }
 
     public Vaga editarVaga(Vaga vaga, Integer id) {
-        vaga.setVagaId(id);
-        return repository.findById(id).map(existingVaga -> repository.save(vaga))
-                .orElseThrow(() -> new RuntimeException("A vaga com ID " + id + " não foi encontrada."));
+        Optional<Vaga> vagaExistente = repository.findById(id);
+        if (vagaExistente.isPresent()) {
+            vaga.setVagaId(id);
+            return repository.save(vaga);
+        } else {
+            throw new RuntimeException("Vaga com o ID" + id + "não encontrado");
+        }
     }
 
     public Boolean excluirVaga(Integer id) {

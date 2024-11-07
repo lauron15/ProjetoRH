@@ -1,7 +1,7 @@
 package com.AppRh.AppRh.Controller;
 
 import com.AppRh.AppRh.Model.Candidato;
-import com.AppRh.AppRh.Model.Vaga;
+
 import com.AppRh.AppRh.Service.CandidatoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
