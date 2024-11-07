@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/usuario")
 @CrossOrigin("*")
 public class UsuarioController {
 
@@ -22,9 +22,11 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Usuario>> listarUsuarios() {
-        return ResponseEntity.status(200).body(usuarioService.listarUsuarios());
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
+        return ResponseEntity.status(200).body(usuarios);
     }
 
     @GetMapping("/{id}")

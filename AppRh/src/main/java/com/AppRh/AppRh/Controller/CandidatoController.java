@@ -2,6 +2,7 @@ package com.AppRh.AppRh.Controller;
 
 import com.AppRh.AppRh.Model.Candidato;
 
+import com.AppRh.AppRh.Model.Usuario;
 import com.AppRh.AppRh.Service.CandidatoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +22,15 @@ public class CandidatoController {
         this.candidatoService = candidatoService;
     }
 
+
     @GetMapping
     public ResponseEntity<List<Candidato>> listarCandidatos() {
-        return ResponseEntity.status(200).body(candidatoService.listarCandidatos());
+        List<Candidato> candidatoes = candidatoService.listarCandidatos();
+        return ResponseEntity.status(200).body(candidatoes);
     }
 
+
+    //
     @GetMapping("/{id}")
     public ResponseEntity<Candidato> listarCandidatosPorId(@PathVariable Integer id) {
         Optional<Candidato> candidato = candidatoService.listarCandidatosPorId(id);

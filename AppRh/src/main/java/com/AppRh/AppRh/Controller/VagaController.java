@@ -27,7 +27,8 @@ public class VagaController {
 
     @GetMapping
     public ResponseEntity<List<Vaga>> listarVaga() {
-        return ResponseEntity.status(200).body(vagaService.listarVaga());
+        List<Vaga>vagas = vagaService.listarVaga();
+        return ResponseEntity.status(200).body(vagas);
     }
 
     @GetMapping("/{id}")
